@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarah Murnane — Culture Writer & Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #faf8f5;
+      color: #2d2a26;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header / Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 36px 0 24px;
+    }
+
+    .hero-photo {
+      width: 150px;
+      min-width: 150px;
+      height: 180px;
+      border-radius: 8px;
+      border: 3px solid #e8e2da;
+      object-fit: cover;
+      object-position: 40% center;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.9rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-text .tagline {
+      font-size: 0.95rem;
+      color: #c97d6d;
+      font-weight: 500;
+    }
+
+    /* Sections */
+    section {
+      padding: 18px 0;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    /* About */
+    .about p {
+      color: #4a4640;
+    }
+
+    /* Writing Cards */
+    .writing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .writing-card {
+      background: #f3efe9;
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: 0 1px 6px rgba(45, 42, 38, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .writing-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(45, 42, 38, 0.1);
+    }
+
+    .writing-card .title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .writing-card .meta {
+      font-size: 0.82rem;
+      color: #8a837a;
+    }
+
+    .writing-card .meta .publication {
+      color: #c97d6d;
+      font-weight: 500;
+    }
+
+    /* Experience & Education items */
+    .exp-item, .edu-item {
+      padding: 10px 0;
+    }
+
+    .exp-item + .exp-item, .edu-item + .edu-item {
+      border-top: 1px solid #ece8e2;
+    }
+
+    .exp-item .role, .edu-item .degree {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .exp-item .org, .edu-item .school {
+      color: #4a4640;
+      font-size: 0.9rem;
+    }
+
+    .exp-item .dates, .edu-item .dates {
+      color: #8a837a;
+      font-size: 0.82rem;
+    }
+
+    /* See more button & expandable list */
+    .see-more-btn {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      background: #f3efe9;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      box-shadow: 0 1px 6px rgba(45, 42, 38, 0.06);
+      color: #c97d6d;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .see-more-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(45, 42, 38, 0.1);
+    }
+
+    .writing-more {
+      display: none;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+
+    .writing-more.open {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Contact */
+    .contact p {
+      color: #4a4640;
+      margin-bottom: 12px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .contact-links a {
+      display: inline-block;
+      background: #f3efe9;
+      color: #2d2a26;
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      background: #c97d6d;
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px 0 20px;
+      font-size: 0.8rem;
+      color: #b5aea5;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 36px 0 28px;
+        gap: 18px;
+      }
+
+      .hero-photo {
+        width: 110px;
+        min-width: 110px;
+        height: 132px;
+      }
+
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-text .tagline {
+        font-size: 0.88rem;
+      }
+
+      section h2 {
+        font-size: 1.15rem;
+      }
+
+      .writing-card {
+        padding: 12px 16px;
+      }
+
+      .contact-links a {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Hero -->
+    <header class="hero">
+      <img class="hero-photo" src="photo.jpg" alt="Sarah Murnane">
+      <div class="hero-text">
+        <h1>Sarah Murnane</h1>
+        <p class="tagline">Culture Writer &amp; Editor</p>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section class="about">
+      <h2>About</h2>
+      <p>
+        Dublin-based writer and editor covering music, nightlife, politics, and
+        the things people don't always want to talk about. My work has appeared
+        in Oxygen.ie, Karma Magazine, TCD Misc., Trinity Film Review, and
+	Trinity News. I like to write with honesty, a bit of humour, and
+	without pretending to have all the answers.
+      </p>
+    </section>
+
+    <!-- Writing -->
+    <section class="writing">
+      <h2>Writing</h2>
+      <div class="writing-list">
+        <a href="https://www.oxygen.ie/venezuela-drugs-bust-gone-wrong/" class="writing-card">
+          <div class="title">Venezuela Drugs Bust: Gone Wrong</div>
+          <div class="meta"><span class="publication">Oxygen.ie</span> · Jan 2026</div>
+        </a>
+        <a href="https://karmamagazine.co.uk/2025/12/03/the-my-bloody-valentine-secret-gig/" class="writing-card">
+          <div class="title">The My Bloody Valentine Secret Gig</div>
+          <div class="meta"><span class="publication">Karma Magazine</span> · Dec 2025</div>
+        </a>
+        <a href="https://www.oxygen.ie/anal/" class="writing-card">
+          <div class="title">Anal?</div>
+          <div class="meta"><span class="publication">Oxygen.ie</span> · Nov 2024</div>
+        </a>
+        <a href="https://miscmagazine.ie/2024/01/25/the-end-of-the-student-journalist/" class="writing-card">
+          <div class="title">The End of the Student Journalist</div>
+          <div class="meta"><span class="publication">TCD Misc.</span> · Jan 2024</div>
+        </a>
+        <a href="https://miscmagazine.ie/2023/12/01/disco-decline-the-government-killed-the-dj/" class="writing-card">
+          <div class="title">Disco Decline: The Government Killed the DJ</div>
+          <div class="meta"><span class="publication">TCD Misc.</span> · Dec 2023</div>
+        </a>
+        <a href="https://www.trinitynews.ie/2022/10/period-poverty-and-period-shaming-a-bloody-big-problem/" class="writing-card">
+          <div class="title">Period Poverty and Period Shaming – A Bloody Big Problem</div>
+          <div class="meta"><span class="publication">Trinity News</span> · Oct 2022</div>
+        </a>
+      </div>
+      <button class="see-more-btn" id="seeMoreBtn">See more</button>
+      <div class="writing-more" id="writingMore">
+        <!-- Paste additional articles here as writing-card links -->
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience">
+      <h2>Experience</h2>
+      <div class="exp-item">
+        <div class="role">Editor</div>
+        <div class="org">Karma! Magazine</div>
+        <div class="dates">Jul 2025 – Present</div>
+      </div>
+      <div class="exp-item">
+        <div class="role">Sex and Relationships Editor</div>
+        <div class="org">Oxygen.ie</div>
+        <div class="dates">Jul 2024 – Present</div>
+      </div>
+      <div class="exp-item">
+        <div class="role">Film and TV Editor</div>
+        <div class="org">The University Times</div>
+        <div class="dates">Sep 2023 – May 2024</div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="education">
+      <h2>Education</h2>
+      <div class="edu-item">
+        <div class="degree">Diploma of Education, Music and Audio Production</div>
+        <div class="school">BIMM University</div>
+        <div class="dates">Sep 2024 – Present</div>
+      </div>
+      <div class="edu-item">
+        <div class="degree">BA History and Political Science</div>
+        <div class="school">Trinity College Dublin</div>
+        <div class="dates">2020 – 2024</div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact">
+      <h2>Get in Touch</h2>
+      <p>Open to commissions, collaborations, and conversations.</p>
+      <div class="contact-links">
+        <a href="mailto:sarahtmurnane@hotmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sarah-murnane-892125200/">LinkedIn</a>
+        <a href="https://www.instagram.com/sarah_murnane_/">Instagram</a>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 Sarah Murnane
+    </footer>
+
+  </div>
+  <script>
+    document.getElementById('seeMoreBtn').addEventListener('click', function() {
+      var more = document.getElementById('writingMore');
+      var open = more.classList.toggle('open');
+      this.textContent = open ? 'See less' : 'See more';
+    });
+  </script>
+</body>
+</html>
